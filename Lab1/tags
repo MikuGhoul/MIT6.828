@@ -1,0 +1,684 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ALT	kern/console.c	218;"	d	file:
+AR	GNUmakefile	/^AR	:= $(GCCPREFIX)ar$/;"	m
+ARRAY_SIZE	inc/types.h	70;"	d
+AS	GNUmakefile	/^AS	:= $(GCCPREFIX)as$/;"	m
+ASM	lib/string.c	9;"	d	file:
+BACKTRACE_RE	grade-lab1	/^BACKTRACE_RE = r"^ *ebp +f01[0-9a-z]{5} +eip +f0100[0-9a-z]{3} +args +([0-9a-z]+)"$/;"	v
+BUFLEN	lib/readline.c	4;"	d	file:
+C	kern/console.c	285;"	d	file:
+CAPSLOCK	kern/console.c	220;"	d	file:
+CC	GNUmakefile	/^CC	:= $(GCCPREFIX)gcc -pipe$/;"	m
+CFLAGS	GNUmakefile	/^CFLAGS := $(CFLAGS) $(DEFS) $(LABDEFS) -O1 -fno-builtin -I$(TOP) -MD$/;"	m
+CGA_BASE	kern/console.h	13;"	d
+CGA_BUF	kern/console.h	14;"	d
+CHECKSUM	kern/entry.S	/^#define CHECKSUM (-(MULTIBOOT_HEADER_MAGIC + MULTIBOOT_HEADER_FLAGS))$/;"	d
+CMDBUF_SIZE	kern/monitor.c	14;"	d	file:
+CMDBYTE	inc/kbdreg.h	60;"	d
+COLORS	gradelib.py	/^COLORS = {"default": "\\033[0m", "red": "\\033[31m", "green": "\\033[32m"}$/;"	v
+COM1	kern/console.c	26;"	d	file:
+COM_DLL	kern/console.c	30;"	d	file:
+COM_DLM	kern/console.c	31;"	d	file:
+COM_FCR	kern/console.c	35;"	d	file:
+COM_IER	kern/console.c	32;"	d	file:
+COM_IER_RDI	kern/console.c	33;"	d	file:
+COM_IIR	kern/console.c	34;"	d	file:
+COM_LCR	kern/console.c	36;"	d	file:
+COM_LCR_DLAB	kern/console.c	37;"	d	file:
+COM_LCR_WLEN8	kern/console.c	38;"	d	file:
+COM_LSR	kern/console.c	43;"	d	file:
+COM_LSR_DATA	kern/console.c	44;"	d	file:
+COM_LSR_TSRE	kern/console.c	46;"	d	file:
+COM_LSR_TXRDY	kern/console.c	45;"	d	file:
+COM_MCR	kern/console.c	39;"	d	file:
+COM_MCR_DTR	kern/console.c	41;"	d	file:
+COM_MCR_OUT2	kern/console.c	42;"	d	file:
+COM_MCR_RTS	kern/console.c	40;"	d	file:
+COM_RX	kern/console.c	28;"	d	file:
+COM_TX	kern/console.c	29;"	d	file:
+CONSBUFSIZE	kern/console.c	385;"	d	file:
+CR0_AM	inc/mmu.h	86;"	d
+CR0_CD	inc/mmu.h	88;"	d
+CR0_EM	inc/mmu.h	81;"	d
+CR0_ET	inc/mmu.h	83;"	d
+CR0_MP	inc/mmu.h	80;"	d
+CR0_NE	inc/mmu.h	84;"	d
+CR0_NW	inc/mmu.h	87;"	d
+CR0_PE	inc/mmu.h	79;"	d
+CR0_PG	inc/mmu.h	89;"	d
+CR0_TS	inc/mmu.h	82;"	d
+CR0_WP	inc/mmu.h	85;"	d
+CR4_DE	inc/mmu.h	94;"	d
+CR4_MCE	inc/mmu.h	92;"	d
+CR4_PCE	inc/mmu.h	91;"	d
+CR4_PSE	inc/mmu.h	93;"	d
+CR4_PVI	inc/mmu.h	96;"	d
+CR4_TSD	inc/mmu.h	95;"	d
+CR4_VME	inc/mmu.h	97;"	d
+CRT_COLS	kern/console.h	17;"	d
+CRT_ROWS	kern/console.h	16;"	d
+CRT_SIZE	kern/console.h	18;"	d
+CTL	kern/console.c	217;"	d	file:
+CURRENT_TEST	gradelib.py	/^CURRENT_TEST = None$/;"	v
+Command	kern/monitor.c	/^struct Command {$/;"	s	file:
+E0ESC	kern/console.c	224;"	d	file:
+ELFHDR	boot/main.c	33;"	d	file:
+ELF_MAGIC	inc/elf.h	4;"	d
+ELF_PROG_FLAG_EXEC	inc/elf.h	52;"	d
+ELF_PROG_FLAG_READ	inc/elf.h	54;"	d
+ELF_PROG_FLAG_WRITE	inc/elf.h	53;"	d
+ELF_PROG_LOAD	inc/elf.h	49;"	d
+ELF_SHN_UNDEF	inc/elf.h	63;"	d
+ELF_SHT_NULL	inc/elf.h	57;"	d
+ELF_SHT_PROGBITS	inc/elf.h	58;"	d
+ELF_SHT_STRTAB	inc/elf.h	60;"	d
+ELF_SHT_SYMTAB	inc/elf.h	59;"	d
+EXTPHYSMEM	inc/memlayout.h	93;"	d
+E_BAD_ENV	inc/error.h	/^	E_BAD_ENV	,	\/\/ Environment doesn't exist or otherwise$/;"	e	enum:__anon3
+E_FAULT	inc/error.h	/^	E_FAULT		,	\/\/ Memory fault$/;"	e	enum:__anon3
+E_INVAL	inc/error.h	/^	E_INVAL		,	\/\/ Invalid parameter$/;"	e	enum:__anon3
+E_NO_FREE_ENV	inc/error.h	/^	E_NO_FREE_ENV	,	\/\/ Attempt to create a new environment beyond$/;"	e	enum:__anon3
+E_NO_MEM	inc/error.h	/^	E_NO_MEM	,	\/\/ Request failed due to memory shortage$/;"	e	enum:__anon3
+E_UNSPECIFIED	inc/error.h	/^	E_UNSPECIFIED	= 1,	\/\/ Unspecified or unknown problem$/;"	e	enum:__anon3
+Eipdebuginfo	kern/kdebug.h	/^struct Eipdebuginfo {$/;"	s
+Elf	inc/elf.h	/^struct Elf {$/;"	s
+FEC_PR	inc/mmu.h	123;"	d
+FEC_U	inc/mmu.h	125;"	d
+FEC_WR	inc/mmu.h	124;"	d
+FL_AC	inc/mmu.h	117;"	d
+FL_AF	inc/mmu.h	102;"	d
+FL_CF	inc/mmu.h	100;"	d
+FL_DF	inc/mmu.h	107;"	d
+FL_ID	inc/mmu.h	120;"	d
+FL_IF	inc/mmu.h	106;"	d
+FL_IOPL_0	inc/mmu.h	110;"	d
+FL_IOPL_1	inc/mmu.h	111;"	d
+FL_IOPL_2	inc/mmu.h	112;"	d
+FL_IOPL_3	inc/mmu.h	113;"	d
+FL_IOPL_MASK	inc/mmu.h	109;"	d
+FL_NT	inc/mmu.h	114;"	d
+FL_OF	inc/mmu.h	108;"	d
+FL_PF	inc/mmu.h	101;"	d
+FL_RF	inc/mmu.h	115;"	d
+FL_SF	inc/mmu.h	104;"	d
+FL_TF	inc/mmu.h	105;"	d
+FL_VIF	inc/mmu.h	118;"	d
+FL_VIP	inc/mmu.h	119;"	d
+FL_VM	inc/mmu.h	116;"	d
+FL_ZF	inc/mmu.h	103;"	d
+GCCPREFIX	GNUmakefile	/^GCCPREFIX := $(shell if i386-jos-elf-objdump -i 2>&1 | grep '^elf32-i386$$' >\/dev\/null 2>&1; \\$/;"	m
+GCC_LIB	GNUmakefile	/^GCC_LIB := $(shell $(CC) $(CFLAGS) -print-libgcc-file-name)$/;"	m
+GDBClient	gradelib.py	/^class GDBClient(object):$/;"	c
+GDBPORT	GNUmakefile	/^GDBPORT	:= $(shell expr `id -u` % 5000 + 25000)$/;"	m
+GD_KD	inc/memlayout.h	16;"	d
+GD_KT	inc/memlayout.h	15;"	d
+GD_TSS0	inc/memlayout.h	19;"	d
+GD_UD	inc/memlayout.h	18;"	d
+GD_UT	inc/memlayout.h	17;"	d
+Gatedesc	inc/mmu.h	/^struct Gatedesc {$/;"	s
+IMAGES	GNUmakefile	/^IMAGES = $(OBJDIR)\/kern\/kernel.img$/;"	m
+IOPHYSMEM	inc/memlayout.h	92;"	d
+JOS_INC_ASSERT_H	inc/assert.h	4;"	d
+JOS_INC_ELF_H	inc/elf.h	2;"	d
+JOS_INC_ERROR_H	inc/error.h	4;"	d
+JOS_INC_MEMLAYOUT_H	inc/memlayout.h	2;"	d
+JOS_INC_MMU_H	inc/mmu.h	2;"	d
+JOS_INC_STDARG_H	inc/stdarg.h	4;"	d
+JOS_INC_STDIO_H	inc/stdio.h	2;"	d
+JOS_INC_STRING_H	inc/string.h	2;"	d
+JOS_INC_TYPES_H	inc/types.h	2;"	d
+JOS_INC_X86_H	inc/x86.h	2;"	d
+JOS_KBDREG_H	inc/kbdreg.h	2;"	d
+JOS_KERN_KDEBUG_H	kern/kdebug.h	2;"	d
+JOS_KERN_MONITOR_H	kern/monitor.h	2;"	d
+JOS_STAB_H	inc/stab.h	2;"	d
+KBCMDP	inc/kbdreg.h	29;"	d
+KBC_AUXDISABLE	inc/kbdreg.h	32;"	d
+KBC_AUXECHO	inc/kbdreg.h	36;"	d
+KBC_AUXENABLE	inc/kbdreg.h	33;"	d
+KBC_AUXTEST	inc/kbdreg.h	34;"	d
+KBC_AUXWRITE	inc/kbdreg.h	37;"	d
+KBC_DISABLE	inc/kbdreg.h	66;"	d
+KBC_ECHO	inc/kbdreg.h	71;"	d
+KBC_ENABLE	inc/kbdreg.h	67;"	d
+KBC_KBDDISABLE	inc/kbdreg.h	40;"	d
+KBC_KBDECHO	inc/kbdreg.h	35;"	d
+KBC_KBDENABLE	inc/kbdreg.h	41;"	d
+KBC_KBDTEST	inc/kbdreg.h	39;"	d
+KBC_MODEIND	inc/kbdreg.h	70;"	d
+KBC_PULSE0	inc/kbdreg.h	42;"	d
+KBC_PULSE1	inc/kbdreg.h	43;"	d
+KBC_PULSE2	inc/kbdreg.h	44;"	d
+KBC_PULSE3	inc/kbdreg.h	45;"	d
+KBC_RAMREAD	inc/kbdreg.h	30;"	d
+KBC_RAMWRITE	inc/kbdreg.h	31;"	d
+KBC_RESEND	inc/kbdreg.h	64;"	d
+KBC_RESET	inc/kbdreg.h	63;"	d
+KBC_SELFTEST	inc/kbdreg.h	38;"	d
+KBC_SETDEFAULT	inc/kbdreg.h	65;"	d
+KBC_SETTABLE	inc/kbdreg.h	69;"	d
+KBC_TYPEMATIC	inc/kbdreg.h	68;"	d
+KBDATAP	inc/kbdreg.h	47;"	d
+KBOUTP	inc/kbdreg.h	48;"	d
+KBR_ACK	inc/kbdreg.h	76;"	d
+KBR_BREAK	inc/kbdreg.h	79;"	d
+KBR_ECHO	inc/kbdreg.h	81;"	d
+KBR_EXTENDED	inc/kbdreg.h	74;"	d
+KBR_FAILURE	inc/kbdreg.h	78;"	d
+KBR_OVERRUN	inc/kbdreg.h	77;"	d
+KBR_RESEND	inc/kbdreg.h	75;"	d
+KBR_RSTDONE	inc/kbdreg.h	80;"	d
+KBSTATP	inc/kbdreg.h	19;"	d
+KBS_DIB	inc/kbdreg.h	20;"	d
+KBS_IBF	inc/kbdreg.h	21;"	d
+KBS_NOSEC	inc/kbdreg.h	24;"	d
+KBS_OCMD	inc/kbdreg.h	23;"	d
+KBS_PERR	inc/kbdreg.h	27;"	d
+KBS_RERR	inc/kbdreg.h	26;"	d
+KBS_TERR	inc/kbdreg.h	25;"	d
+KBS_WARM	inc/kbdreg.h	22;"	d
+KC8_CPU	inc/kbdreg.h	57;"	d
+KC8_IGNSEC	inc/kbdreg.h	56;"	d
+KC8_KDISABLE	inc/kbdreg.h	55;"	d
+KC8_KENABLE	inc/kbdreg.h	59;"	d
+KC8_MDISABLE	inc/kbdreg.h	54;"	d
+KC8_MENABLE	inc/kbdreg.h	58;"	d
+KC8_TRANS	inc/kbdreg.h	53;"	d
+KERNBASE	inc/memlayout.h	87;"	d
+KERN_CFLAGS	GNUmakefile	/^KERN_CFLAGS := $(CFLAGS) -DJOS_KERNEL -gstabs$/;"	m
+KEY_DEL	inc/kbdreg.h	14;"	d
+KEY_DN	inc/kbdreg.h	8;"	d
+KEY_END	inc/kbdreg.h	6;"	d
+KEY_HOME	inc/kbdreg.h	5;"	d
+KEY_INS	inc/kbdreg.h	13;"	d
+KEY_LF	inc/kbdreg.h	9;"	d
+KEY_PGDN	inc/kbdreg.h	12;"	d
+KEY_PGUP	inc/kbdreg.h	11;"	d
+KEY_RT	inc/kbdreg.h	10;"	d
+KEY_UP	inc/kbdreg.h	7;"	d
+KSTACKTOP	inc/memlayout.h	96;"	d
+KSTKGAP	inc/memlayout.h	98;"	d
+KSTKSIZE	inc/memlayout.h	97;"	d
+K_LDCMDBYTE	inc/kbdreg.h	51;"	d
+K_RDCMDBYTE	inc/kbdreg.h	50;"	d
+LAB	conf/lab.mk	/^LAB=1$/;"	m
+LABSETUP	GNUmakefile	/^LABSETUP ?= .\/$/;"	m
+LD	GNUmakefile	/^LD	:= $(GCCPREFIX)ld$/;"	m
+LDFLAGS	GNUmakefile	/^LDFLAGS := -m elf_i386$/;"	m
+MAKE_TIMESTAMP	gradelib.py	/^MAKE_TIMESTAMP = 0$/;"	v
+MAX	inc/types.h	49;"	d
+MAXARGS	kern/monitor.c	69;"	d	file:
+MAXERROR	inc/error.h	/^	MAXERROR$/;"	e	enum:__anon3
+MIN	inc/types.h	43;"	d
+MMIOBASE	inc/memlayout.h	102;"	d
+MMIOLIM	inc/memlayout.h	101;"	d
+MONO_BASE	kern/console.h	11;"	d
+MONO_BUF	kern/console.h	12;"	d
+MULTIBOOT_HEADER_FLAGS	kern/entry.S	/^#define MULTIBOOT_HEADER_FLAGS (0)$/;"	d
+MULTIBOOT_HEADER_MAGIC	kern/entry.S	/^#define MULTIBOOT_HEADER_MAGIC (0x1BADB002)$/;"	d
+NATIVE_CFLAGS	GNUmakefile	/^NATIVE_CFLAGS := $(CFLAGS) $(DEFS) $(LABDEFS) -I$(TOP) -MD -Wall$/;"	m
+NCC	GNUmakefile	/^NCC	:= gcc $(CC_VER) -pipe$/;"	m
+NM	GNUmakefile	/^NM	:= $(GCCPREFIX)nm$/;"	m
+NO	kern/console.c	214;"	d	file:
+NPDENTRIES	inc/mmu.h	45;"	d
+NPTENTRIES	inc/mmu.h	46;"	d
+NULL	inc/stdio.h	7;"	d
+NULL	inc/types.h	5;"	d
+NUMLOCK	kern/console.c	221;"	d	file:
+N_BCOMM	inc/stab.h	37;"	d
+N_BINCL	inc/stab.h	29;"	d
+N_BSLINE	inc/stab.h	25;"	d
+N_DSLINE	inc/stab.h	24;"	d
+N_ECOML	inc/stab.h	39;"	d
+N_ECOMM	inc/stab.h	38;"	d
+N_EINCL	inc/stab.h	32;"	d
+N_ENTRY	inc/stab.h	33;"	d
+N_EXCL	inc/stab.h	35;"	d
+N_FNAME	inc/stab.h	16;"	d
+N_FUN	inc/stab.h	17;"	d
+N_GSYM	inc/stab.h	15;"	d
+N_LBRAC	inc/stab.h	34;"	d
+N_LCSYM	inc/stab.h	19;"	d
+N_LENG	inc/stab.h	40;"	d
+N_LSYM	inc/stab.h	28;"	d
+N_MAIN	inc/stab.h	20;"	d
+N_PC	inc/stab.h	21;"	d
+N_PSYM	inc/stab.h	31;"	d
+N_RBRAC	inc/stab.h	36;"	d
+N_RSYM	inc/stab.h	22;"	d
+N_SLINE	inc/stab.h	23;"	d
+N_SO	inc/stab.h	27;"	d
+N_SOL	inc/stab.h	30;"	d
+N_SSYM	inc/stab.h	26;"	d
+N_STSYM	inc/stab.h	18;"	d
+OBJCOPY	GNUmakefile	/^OBJCOPY	:= $(GCCPREFIX)objcopy$/;"	m
+OBJDIR	GNUmakefile	/^OBJDIR := obj$/;"	m
+OBJDIRS	GNUmakefile	/^OBJDIRS :=$/;"	m
+OBJDUMP	GNUmakefile	/^OBJDUMP	:= $(GCCPREFIX)objdump$/;"	m
+PACKAGEDATE	conf/lab.mk	/^PACKAGEDATE=Thu Aug 30 15:16:04 EDT 2018$/;"	m
+PDX	inc/mmu.h	33;"	d
+PDXSHIFT	inc/mmu.h	55;"	d
+PERL	GNUmakefile	/^PERL	:= perl$/;"	m
+PFTEMP	inc/memlayout.h	137;"	d
+PGADDR	inc/mmu.h	42;"	d
+PGNUM	inc/mmu.h	30;"	d
+PGOFF	inc/mmu.h	39;"	d
+PGSHIFT	inc/mmu.h	49;"	d
+PGSIZE	inc/mmu.h	48;"	d
+PTE_A	inc/mmu.h	63;"	d
+PTE_ADDR	inc/mmu.h	76;"	d
+PTE_AVAIL	inc/mmu.h	70;"	d
+PTE_D	inc/mmu.h	64;"	d
+PTE_G	inc/mmu.h	66;"	d
+PTE_P	inc/mmu.h	58;"	d
+PTE_PCD	inc/mmu.h	62;"	d
+PTE_PS	inc/mmu.h	65;"	d
+PTE_PWT	inc/mmu.h	61;"	d
+PTE_SYSCALL	inc/mmu.h	73;"	d
+PTE_U	inc/mmu.h	60;"	d
+PTE_W	inc/mmu.h	59;"	d
+PTSHIFT	inc/mmu.h	52;"	d
+PTSIZE	inc/mmu.h	51;"	d
+PTX	inc/mmu.h	36;"	d
+PTXSHIFT	inc/mmu.h	54;"	d
+Proghdr	inc/elf.h	/^struct Proghdr {$/;"	s
+Pseudodesc	inc/mmu.h	/^struct Pseudodesc {$/;"	s
+QEMU	GNUmakefile	/^QEMU := $(shell if which qemu >\/dev\/null 2>&1; \\$/;"	m
+QEMU	gradelib.py	/^class QEMU(object):$/;"	c
+QEMUOPTS	GNUmakefile	/^QEMUOPTS = -drive file=$(OBJDIR)\/kern\/kernel.img,index=0,media=disk,format=raw -serial mon:stdio -gdb tcp::$(GDBPORT)$/;"	m
+RELOC	kern/entry.S	/^#define	RELOC(x) ((x) - KERNBASE)$/;"	d
+ROUNDDOWN	inc/types.h	58;"	d
+ROUNDUP	inc/types.h	64;"	d
+Runner	gradelib.py	/^class Runner():$/;"	c
+SCROLLLOCK	kern/console.c	222;"	d	file:
+SECTSIZE	boot/main.c	32;"	d	file:
+SEG	inc/mmu.h	142;"	d
+SEG	inc/mmu.h	172;"	d
+SEG16	inc/mmu.h	176;"	d
+SEG_FAULT	inc/mmu.h	170;"	d
+SEG_NULL	inc/mmu.h	139;"	d
+SEG_NULL	inc/mmu.h	168;"	d
+SETCALLGATE	inc/mmu.h	296;"	d
+SETGATE	inc/mmu.h	282;"	d
+SHIFT	kern/console.c	216;"	d	file:
+SRL	kern/entry.S	/^#define SRL(val, shamt)		(((val) >> (shamt)) & ~(-1 << (32 - (shamt))))$/;"	d
+STA_A	inc/mmu.h	189;"	d
+STA_C	inc/mmu.h	186;"	d
+STA_E	inc/mmu.h	185;"	d
+STA_R	inc/mmu.h	188;"	d
+STA_W	inc/mmu.h	187;"	d
+STA_X	inc/mmu.h	184;"	d
+STS_CG16	inc/mmu.h	195;"	d
+STS_CG32	inc/mmu.h	201;"	d
+STS_IG16	inc/mmu.h	197;"	d
+STS_IG32	inc/mmu.h	202;"	d
+STS_LDT	inc/mmu.h	193;"	d
+STS_T16A	inc/mmu.h	192;"	d
+STS_T16B	inc/mmu.h	194;"	d
+STS_T32A	inc/mmu.h	199;"	d
+STS_T32B	inc/mmu.h	200;"	d
+STS_TG	inc/mmu.h	196;"	d
+STS_TG16	inc/mmu.h	198;"	d
+STS_TG32	inc/mmu.h	203;"	d
+Secthdr	inc/elf.h	/^struct Secthdr {$/;"	s
+Segdesc	inc/mmu.h	/^struct Segdesc {$/;"	s
+Stab	inc/stab.h	/^struct Stab {$/;"	s
+TAR	GNUmakefile	/^TAR	:= gtar$/;"	m
+TEMP_ADDR	user/sendpage.c	9;"	d	file:
+TEMP_ADDR_CHILD	user/sendpage.c	10;"	d	file:
+TESTS	gradelib.py	/^TESTS = []$/;"	v
+TOP	GNUmakefile	/^TOP = .$/;"	m
+Taskstate	inc/mmu.h	/^struct Taskstate {$/;"	s
+TerminateTest	gradelib.py	/^class TerminateTest(Exception):$/;"	c
+UENVS	inc/memlayout.h	116;"	d
+ULDFLAGS	GNUmakefile	/^ULDFLAGS := -T user\/user.ld$/;"	m
+ULIM	inc/memlayout.h	104;"	d
+UPAGES	inc/memlayout.h	114;"	d
+UPSTREAM	GNUmakefile	/^UPSTREAM := $(shell git remote -v | grep "pdos.csail.mit.edu\/6.828\/2018\/jos.git (fetch)" | awk '{split($$0,a," "); print a[1]}')$/;"	m
+USER_CFLAGS	GNUmakefile	/^USER_CFLAGS := $(CFLAGS) -DJOS_USER -gstabs$/;"	m
+USTABDATA	inc/memlayout.h	139;"	d
+USTACKTOP	inc/memlayout.h	128;"	d
+UTEMP	inc/memlayout.h	134;"	d
+UTEXT	inc/memlayout.h	131;"	d
+UTOP	inc/memlayout.h	123;"	d
+UVPT	inc/memlayout.h	112;"	d
+UXSTACKTOP	inc/memlayout.h	125;"	d
+V	conf/env.mk	/^V = @$/;"	m
+WEBSUB	GNUmakefile	/^WEBSUB := https:\/\/6828.scripts.mit.edu\/2018\/handin.py$/;"	m
+WHITESPACE	kern/monitor.c	68;"	d	file:
+_CONSOLE_H_	kern/console.h	4;"	d
+_GDBPORT	gradelib.py	/^    _GDBPORT = None$/;"	v	class:QEMU
+__all__	gradelib.py	/^__all__ = []$/;"	v
+__init__	gradelib.py	/^    def __init__(self, *default_monitors):$/;"	m	class:Runner
+__init__	gradelib.py	/^    def __init__(self, *make_args):$/;"	m	class:QEMU
+__init__	gradelib.py	/^    def __init__(self, port, timeout=15):$/;"	m	class:GDBClient
+__monitor_start	gradelib.py	/^    def __monitor_start(self, output):$/;"	m	class:Runner	file:
+__react	gradelib.py	/^    def __react(self, reactors, timeout):$/;"	m	class:Runner	file:
+__send	gradelib.py	/^    def __send(self, cmd):$/;"	m	class:GDBClient	file:
+__send_break	gradelib.py	/^    def __send_break(self):$/;"	m	class:GDBClient	file:
+_panic	kern/init.c	/^_panic(const char *file, int line, const char *fmt,...)$/;"	f
+_start	kern/entry.S	/^_start = RELOC(entry)$/;"	d
+_warn	kern/init.c	/^_warn(const char *file, int line, const char *fmt,...)$/;"	f
+addr_6845	kern/console.c	/^static unsigned addr_6845;$/;"	v	file:
+assert	inc/assert.h	14;"	d
+assert_equal	gradelib.py	/^def assert_equal(got, expect, msg=""):$/;"	f
+assert_lines_match	gradelib.py	/^def assert_lines_match(text, *regexps, **kw):$/;"	f
+assert_lines_match_kw	gradelib.py	/^    def assert_lines_match_kw(no=[]):$/;"	f	function:assert_lines_match
+bool	inc/types.h	/^typedef _Bool bool;$/;"	t
+bootmain	boot/main.c	/^bootmain(void)$/;"	f
+bootstack	kern/entry.S	/^bootstack:$/;"	l
+bootstacktop	kern/entry.S	/^bootstacktop:$/;"	l
+breakpoint	gradelib.py	/^    def breakpoint(self, addr):$/;"	m	class:GDBClient
+breakpoint	inc/x86.h	/^breakpoint(void)$/;"	f
+buf	kern/console.c	/^	uint8_t buf[CONSBUFSIZE];$/;"	m	struct:__anon1	file:
+buf	lib/printfmt.c	/^	char *buf;$/;"	m	struct:sprintbuf	file:
+buf	lib/readline.c	/^static char buf[BUFLEN];$/;"	v	file:
+call_on_line	gradelib.py	/^def call_on_line(regexp, callback):$/;"	f
+cga_init	kern/console.c	/^cga_init(void)$/;"	f	file:
+cga_putc	kern/console.c	/^cga_putc(int c)$/;"	f	file:
+charcode	kern/console.c	/^static uint8_t *charcode[4] = {$/;"	v	file:
+close	gradelib.py	/^    def close(self):$/;"	m	class:GDBClient
+cnt	lib/printfmt.c	/^	int cnt;$/;"	m	struct:sprintbuf	file:
+color	gradelib.py	/^def color(name, text):$/;"	f
+commands	kern/monitor.c	/^static struct Command commands[] = {$/;"	v	typeref:struct:Command	file:
+cons	kern/console.c	/^} cons;$/;"	v	typeref:struct:__anon1	file:
+cons_getc	kern/console.c	/^cons_getc(void)$/;"	f
+cons_init	kern/console.c	/^cons_init(void)$/;"	f
+cons_intr	kern/console.c	/^cons_intr(int (*proc)(void))$/;"	f	file:
+cons_putc	kern/console.c	/^cons_putc(int c)$/;"	f	file:
+cont	gradelib.py	/^    def cont(self):$/;"	m	class:GDBClient
+cprintf	kern/printf.c	/^cprintf(const char *fmt, ...)$/;"	f
+cpuid	inc/x86.h	/^cpuid(uint32_t info, uint32_t *eaxp, uint32_t *ebxp, uint32_t *ecxp, uint32_t *edxp)$/;"	f
+cputchar	kern/console.c	/^cputchar(int c)$/;"	f
+crt_buf	kern/console.c	/^static uint16_t *crt_buf;$/;"	v	file:
+crt_pos	kern/console.c	/^static uint16_t crt_pos;$/;"	v	file:
+ctlmap	kern/console.c	/^static uint8_t ctlmap[256] =$/;"	v	file:
+debuginfo_eip	kern/kdebug.c	/^debuginfo_eip(uintptr_t addr, struct Eipdebuginfo *info)$/;"	f
+delay	kern/console.c	/^delay(void)$/;"	f	file:
+desc	kern/monitor.c	/^	const char *desc;$/;"	m	struct:Command	file:
+e_ehsize	inc/elf.h	/^	uint16_t e_ehsize;$/;"	m	struct:Elf
+e_elf	inc/elf.h	/^	uint8_t e_elf[12];$/;"	m	struct:Elf
+e_entry	inc/elf.h	/^	uint32_t e_entry;$/;"	m	struct:Elf
+e_flags	inc/elf.h	/^	uint32_t e_flags;$/;"	m	struct:Elf
+e_machine	inc/elf.h	/^	uint16_t e_machine;$/;"	m	struct:Elf
+e_magic	inc/elf.h	/^	uint32_t e_magic;	\/\/ must equal ELF_MAGIC$/;"	m	struct:Elf
+e_phentsize	inc/elf.h	/^	uint16_t e_phentsize;$/;"	m	struct:Elf
+e_phnum	inc/elf.h	/^	uint16_t e_phnum;$/;"	m	struct:Elf
+e_phoff	inc/elf.h	/^	uint32_t e_phoff;$/;"	m	struct:Elf
+e_shentsize	inc/elf.h	/^	uint16_t e_shentsize;$/;"	m	struct:Elf
+e_shnum	inc/elf.h	/^	uint16_t e_shnum;$/;"	m	struct:Elf
+e_shoff	inc/elf.h	/^	uint32_t e_shoff;$/;"	m	struct:Elf
+e_shstrndx	inc/elf.h	/^	uint16_t e_shstrndx;$/;"	m	struct:Elf
+e_type	inc/elf.h	/^	uint16_t e_type;$/;"	m	struct:Elf
+e_version	inc/elf.h	/^	uint32_t e_version;$/;"	m	struct:Elf
+ebuf	lib/printfmt.c	/^	char *ebuf;$/;"	m	struct:sprintbuf	file:
+eip_file	kern/kdebug.h	/^	const char *eip_file;		\/\/ Source code filename for EIP$/;"	m	struct:Eipdebuginfo
+eip_fn_addr	kern/kdebug.h	/^	uintptr_t eip_fn_addr;		\/\/ Address of start of function$/;"	m	struct:Eipdebuginfo
+eip_fn_name	kern/kdebug.h	/^	const char *eip_fn_name;	\/\/ Name of function containing EIP$/;"	m	struct:Eipdebuginfo
+eip_fn_namelen	kern/kdebug.h	/^	int eip_fn_namelen;		\/\/ Length of function name$/;"	m	struct:Eipdebuginfo
+eip_fn_narg	kern/kdebug.h	/^	int eip_fn_narg;		\/\/ Number of function arguments$/;"	m	struct:Eipdebuginfo
+eip_line	kern/kdebug.h	/^	int eip_line;			\/\/ Source code linenumber for EIP$/;"	m	struct:Eipdebuginfo
+end_part	gradelib.py	/^def end_part(name):$/;"	f
+entry	kern/entry.S	/^entry:$/;"	l
+entry_pgdir	kern/entrypgdir.c	/^pde_t entry_pgdir[NPDENTRIES] = {$/;"	v
+entry_pgtable	kern/entrypgdir.c	/^pte_t entry_pgtable[NPTENTRIES] = {$/;"	v
+entry_pgtable	kern/entrypgdir.c	/^pte_t entry_pgtable[NPTENTRIES];$/;"	v
+error_string	lib/printfmt.c	/^static const char * const error_string[MAXERROR] =$/;"	v	file:
+false	inc/types.h	/^enum { false, true };$/;"	e	enum:__anon2
+fileno	gradelib.py	/^    def fileno(self):$/;"	f
+fileno	gradelib.py	/^    def fileno(self):$/;"	m	class:GDBClient
+fs_test	fs/test.c	/^fs_test(void)$/;"	f
+func	kern/monitor.c	/^	int (*func)(int argc, char** argv, struct Trapframe* tf);$/;"	m	struct:Command	file:
+gd_args	inc/mmu.h	/^	unsigned gd_args : 5;        \/\/ # args, 0 for interrupt\/trap gates$/;"	m	struct:Gatedesc
+gd_dpl	inc/mmu.h	/^	unsigned gd_dpl : 2;         \/\/ descriptor(meaning new) privilege level$/;"	m	struct:Gatedesc
+gd_off_15_0	inc/mmu.h	/^	unsigned gd_off_15_0 : 16;   \/\/ low 16 bits of offset in segment$/;"	m	struct:Gatedesc
+gd_off_31_16	inc/mmu.h	/^	unsigned gd_off_31_16 : 16;  \/\/ high bits of offset in segment$/;"	m	struct:Gatedesc
+gd_p	inc/mmu.h	/^	unsigned gd_p : 1;           \/\/ Present$/;"	m	struct:Gatedesc
+gd_rsv1	inc/mmu.h	/^	unsigned gd_rsv1 : 3;        \/\/ reserved(should be zero I guess)$/;"	m	struct:Gatedesc
+gd_s	inc/mmu.h	/^	unsigned gd_s : 1;           \/\/ must be 0 (system)$/;"	m	struct:Gatedesc
+gd_sel	inc/mmu.h	/^	unsigned gd_sel : 16;        \/\/ segment selector$/;"	m	struct:Gatedesc
+gd_type	inc/mmu.h	/^	unsigned gd_type : 4;        \/\/ type(STS_{TG,IG32,TG32})$/;"	m	struct:Gatedesc
+gdt	boot/boot.S	/^gdt:$/;"	l
+gdtdesc	boot/boot.S	/^gdtdesc:$/;"	l
+get_current_test	gradelib.py	/^def get_current_test():$/;"	f
+get_gdb_port	gradelib.py	/^    def get_gdb_port():$/;"	f
+getchar	kern/console.c	/^getchar(void)$/;"	f
+getint	lib/printfmt.c	/^getint(va_list *ap, int lflag)$/;"	f	file:
+getuint	lib/printfmt.c	/^getuint(va_list *ap, int lflag)$/;"	f	file:
+handle_output	gradelib.py	/^        def handle_output(output):$/;"	f	function:call_on_line.setup_call_on_line
+handle_read	gradelib.py	/^    def handle_read(self):$/;"	f
+handle_read	gradelib.py	/^    def handle_read(self):$/;"	m	class:GDBClient
+i386_init	kern/init.c	/^i386_init(void)$/;"	f
+inb	inc/x86.h	/^inb(int port)$/;"	f
+inl	inc/x86.h	/^inl(int port)$/;"	f
+insb	inc/x86.h	/^insb(int port, void *addr, int cnt)$/;"	f
+insl	inc/x86.h	/^insl(int port, void *addr, int cnt)$/;"	f
+insw	inc/x86.h	/^insw(int port, void *addr, int cnt)$/;"	f
+int16_t	inc/types.h	/^typedef short int16_t;$/;"	t
+int32_t	inc/types.h	/^typedef int int32_t;$/;"	t
+int64_t	inc/types.h	/^typedef long long int64_t;$/;"	t
+int8_t	inc/types.h	/^typedef __signed char int8_t;$/;"	t
+intptr_t	inc/types.h	/^typedef int32_t intptr_t;$/;"	t
+invlpg	inc/x86.h	/^invlpg(void *addr)$/;"	f
+inw	inc/x86.h	/^inw(int port)$/;"	f
+iscons	kern/console.c	/^iscons(int fdnum)$/;"	f
+kbd_init	kern/console.c	/^kbd_init(void)$/;"	f	file:
+kbd_intr	kern/console.c	/^kbd_intr(void)$/;"	f
+kbd_proc_data	kern/console.c	/^kbd_proc_data(void)$/;"	f	file:
+kill	gradelib.py	/^    def kill(self):$/;"	f
+lcr0	inc/x86.h	/^lcr0(uint32_t val)$/;"	f
+lcr3	inc/x86.h	/^lcr3(uint32_t val)$/;"	f
+lcr4	inc/x86.h	/^lcr4(uint32_t val)$/;"	f
+lgdt	inc/x86.h	/^lgdt(void *p)$/;"	f
+lidt	inc/x86.h	/^lidt(void *p)$/;"	f
+lldt	inc/x86.h	/^lldt(uint16_t sel)$/;"	f
+lpt_putc	kern/console.c	/^lpt_putc(int c)$/;"	f	file:
+ltr	inc/x86.h	/^ltr(uint16_t sel)$/;"	f
+make	gradelib.py	/^def make(*target):$/;"	f
+match	gradelib.py	/^    def match(self, *args, **kwargs):$/;"	m	class:Runner
+maybe_unlink	gradelib.py	/^def maybe_unlink(*paths):$/;"	f
+memcmp	lib/string.c	/^memcmp(const void *v1, const void *v2, size_t n)$/;"	f
+memcpy	lib/string.c	/^memcpy(void *dst, const void *src, size_t n)$/;"	f
+memfind	lib/string.c	/^memfind(const void *s, int c, size_t n)$/;"	f
+memmove	lib/string.c	/^memmove(void *dst, const void *src, size_t n)$/;"	f
+memset	lib/string.c	/^memset(void *v, int c, size_t n)$/;"	f
+mon_backtrace	kern/monitor.c	/^mon_backtrace(int argc, char **argv, struct Trapframe *tf)$/;"	f
+mon_help	kern/monitor.c	/^mon_help(int argc, char **argv, struct Trapframe *tf)$/;"	f
+mon_kerninfo	kern/monitor.c	/^mon_kerninfo(int argc, char **argv, struct Trapframe *tf)$/;"	f
+monitor	kern/monitor.c	/^monitor(struct Trapframe *tf)$/;"	f
+msg	fs/test.c	/^static char *msg = "This is the NEW message of the day!\\n\\n";$/;"	v	file:
+n_desc	inc/stab.h	/^	uint16_t n_desc;        \/\/ description field$/;"	m	struct:Stab
+n_other	inc/stab.h	/^	uint8_t n_other;        \/\/ misc info (usually empty)$/;"	m	struct:Stab
+n_strx	inc/stab.h	/^	uint32_t n_strx;	\/\/ index into string table of name$/;"	m	struct:Stab
+n_type	inc/stab.h	/^	uint8_t n_type;         \/\/ type of symbol$/;"	m	struct:Stab
+n_value	inc/stab.h	/^	uintptr_t n_value;	\/\/ value of symbol$/;"	m	struct:Stab
+name	kern/monitor.c	/^	const char *name;$/;"	m	struct:Command	file:
+normalmap	kern/console.c	/^static uint8_t normalmap[256] =$/;"	v	file:
+off_t	inc/types.h	/^typedef int32_t off_t;$/;"	t
+offsetof	inc/types.h	73;"	d
+outb	inc/x86.h	/^outb(int port, uint8_t data)$/;"	f
+outl	inc/x86.h	/^outl(int port, uint32_t data)$/;"	f
+outsb	inc/x86.h	/^outsb(int port, const void *addr, int cnt)$/;"	f
+outsl	inc/x86.h	/^outsl(int port, const void *addr, int cnt)$/;"	f
+outsw	inc/x86.h	/^outsw(int port, const void *addr, int cnt)$/;"	f
+outw	inc/x86.h	/^outw(int port, uint16_t data)$/;"	f
+p_align	inc/elf.h	/^	uint32_t p_align;$/;"	m	struct:Proghdr
+p_filesz	inc/elf.h	/^	uint32_t p_filesz;$/;"	m	struct:Proghdr
+p_flags	inc/elf.h	/^	uint32_t p_flags;$/;"	m	struct:Proghdr
+p_memsz	inc/elf.h	/^	uint32_t p_memsz;$/;"	m	struct:Proghdr
+p_offset	inc/elf.h	/^	uint32_t p_offset;$/;"	m	struct:Proghdr
+p_pa	inc/elf.h	/^	uint32_t p_pa;$/;"	m	struct:Proghdr
+p_type	inc/elf.h	/^	uint32_t p_type;$/;"	m	struct:Proghdr
+p_va	inc/elf.h	/^	uint32_t p_va;$/;"	m	struct:Proghdr
+panic	inc/assert.h	12;"	d
+panicstr	kern/init.c	/^const char *panicstr;$/;"	v
+pd_base	inc/mmu.h	/^	uint32_t pd_base;		\/\/ Base address$/;"	m	struct:Pseudodesc
+pd_lim	inc/mmu.h	/^	uint16_t pd_lim;		\/\/ Limit$/;"	m	struct:Pseudodesc
+pde_t	inc/memlayout.h	/^typedef uint32_t pde_t;$/;"	t
+physaddr_t	inc/types.h	/^typedef uint32_t physaddr_t;$/;"	t
+post_make	gradelib.py	/^def post_make():$/;"	f
+ppn_t	inc/types.h	/^typedef uint32_t ppn_t;$/;"	t
+pre_make	gradelib.py	/^def pre_make():$/;"	f
+printfmt	lib/printfmt.c	/^printfmt(void (*putch)(int, void*), void *putdat, const char *fmt, ...)$/;"	f
+printnum	lib/printfmt.c	/^printnum(void (*putch)(int, void*), void *putdat,$/;"	f	file:
+protcseg	boot/boot.S	/^protcseg:$/;"	l
+pte_t	inc/memlayout.h	/^typedef uint32_t pte_t;$/;"	t
+putch	kern/printf.c	/^putch(int ch, int *cnt)$/;"	f	file:
+r	grade-lab1	/^r = Runner(save("jos.out"),$/;"	v
+rcr0	inc/x86.h	/^rcr0(void)$/;"	f
+rcr2	inc/x86.h	/^rcr2(void)$/;"	f
+rcr3	inc/x86.h	/^rcr3(void)$/;"	f
+rcr4	inc/x86.h	/^rcr4(void)$/;"	f
+read_ebp	inc/x86.h	/^read_ebp(void)$/;"	f
+read_eflags	inc/x86.h	/^read_eflags(void)$/;"	f
+read_esp	inc/x86.h	/^read_esp(void)$/;"	f
+read_tsc	inc/x86.h	/^read_tsc(void)$/;"	f
+readdeps	mergedep.pl	/^sub readdeps {$/;"	s
+readline	lib/readline.c	/^readline(const char *prompt)$/;"	f
+readsect	boot/main.c	/^readsect(void *dst, uint32_t offset)$/;"	f
+readseg	boot/main.c	/^readseg(uint32_t pa, uint32_t count, uint32_t offset)$/;"	f
+register_test	gradelib.py	/^    def register_test(fn, title=title):$/;"	f	function:test
+relocated	kern/entry.S	/^relocated:$/;"	l
+reset_fs	gradelib.py	/^def reset_fs():$/;"	f
+rpos	kern/console.c	/^	uint32_t rpos;$/;"	m	struct:__anon1	file:
+run_qemu	gradelib.py	/^    def run_qemu(self, *monitors, **kw):$/;"	m	class:Runner
+run_qemu_kw	gradelib.py	/^        def run_qemu_kw(target_base="qemu", make_args=[], timeout=30):$/;"	f	function:Runner.run_qemu
+run_test	gradelib.py	/^        def run_test():$/;"	f	function:test.register_test
+run_tests	gradelib.py	/^def run_tests():$/;"	f
+runcmd	kern/monitor.c	/^runcmd(char *buf, struct Trapframe *tf)$/;"	f	file:
+save	gradelib.py	/^def save(path):$/;"	f
+save_on_finish	gradelib.py	/^    def save_on_finish(fail):$/;"	f	function:save
+sd_avl	inc/mmu.h	/^	unsigned sd_avl : 1;        \/\/ Unused (available for software use)$/;"	m	struct:Segdesc
+sd_base_15_0	inc/mmu.h	/^	unsigned sd_base_15_0 : 16; \/\/ Low bits of segment base address$/;"	m	struct:Segdesc
+sd_base_23_16	inc/mmu.h	/^	unsigned sd_base_23_16 : 8; \/\/ Middle bits of segment base address$/;"	m	struct:Segdesc
+sd_base_31_24	inc/mmu.h	/^	unsigned sd_base_31_24 : 8; \/\/ High bits of segment base address$/;"	m	struct:Segdesc
+sd_db	inc/mmu.h	/^	unsigned sd_db : 1;         \/\/ 0 = 16-bit segment, 1 = 32-bit segment$/;"	m	struct:Segdesc
+sd_dpl	inc/mmu.h	/^	unsigned sd_dpl : 2;        \/\/ Descriptor Privilege Level$/;"	m	struct:Segdesc
+sd_g	inc/mmu.h	/^	unsigned sd_g : 1;          \/\/ Granularity: limit scaled by 4K when set$/;"	m	struct:Segdesc
+sd_lim_15_0	inc/mmu.h	/^	unsigned sd_lim_15_0 : 16;  \/\/ Low bits of segment limit$/;"	m	struct:Segdesc
+sd_lim_19_16	inc/mmu.h	/^	unsigned sd_lim_19_16 : 4;  \/\/ High bits of segment limit$/;"	m	struct:Segdesc
+sd_p	inc/mmu.h	/^	unsigned sd_p : 1;          \/\/ Present$/;"	m	struct:Segdesc
+sd_rsv1	inc/mmu.h	/^	unsigned sd_rsv1 : 1;       \/\/ Reserved$/;"	m	struct:Segdesc
+sd_s	inc/mmu.h	/^	unsigned sd_s : 1;          \/\/ 0 = system, 1 = application$/;"	m	struct:Segdesc
+sd_type	inc/mmu.h	/^	unsigned sd_type : 4;       \/\/ Segment type (see STS_ constants)$/;"	m	struct:Segdesc
+serial_exists	kern/console.c	/^static bool serial_exists;$/;"	v	file:
+serial_init	kern/console.c	/^serial_init(void)$/;"	f	file:
+serial_intr	kern/console.c	/^serial_intr(void)$/;"	f
+serial_proc_data	kern/console.c	/^serial_proc_data(void)$/;"	f	file:
+serial_putc	kern/console.c	/^serial_putc(int c)$/;"	f	file:
+setup_breakpoint	gradelib.py	/^    def setup_breakpoint(runner):$/;"	f	function:stop_breakpoint
+setup_call_on_line	gradelib.py	/^    def setup_call_on_line(runner):$/;"	f	function:call_on_line
+setup_save	gradelib.py	/^    def setup_save(runner):$/;"	f	function:save
+sh_addr	inc/elf.h	/^	uint32_t sh_addr;$/;"	m	struct:Secthdr
+sh_addralign	inc/elf.h	/^	uint32_t sh_addralign;$/;"	m	struct:Secthdr
+sh_entsize	inc/elf.h	/^	uint32_t sh_entsize;$/;"	m	struct:Secthdr
+sh_flags	inc/elf.h	/^	uint32_t sh_flags;$/;"	m	struct:Secthdr
+sh_info	inc/elf.h	/^	uint32_t sh_info;$/;"	m	struct:Secthdr
+sh_link	inc/elf.h	/^	uint32_t sh_link;$/;"	m	struct:Secthdr
+sh_name	inc/elf.h	/^	uint32_t sh_name;$/;"	m	struct:Secthdr
+sh_offset	inc/elf.h	/^	uint32_t sh_offset;$/;"	m	struct:Secthdr
+sh_size	inc/elf.h	/^	uint32_t sh_size;$/;"	m	struct:Secthdr
+sh_type	inc/elf.h	/^	uint32_t sh_type;$/;"	m	struct:Secthdr
+shiftcode	kern/console.c	/^static uint8_t shiftcode[256] =$/;"	v	file:
+shiftmap	kern/console.c	/^static uint8_t shiftmap[256] =$/;"	v	file:
+show_command	gradelib.py	/^def show_command(cmd):$/;"	f
+show_part	gradelib.py	/^    def show_part():$/;"	f	function:end_part
+size_t	inc/types.h	/^typedef uint32_t size_t;$/;"	t
+snprintf	lib/printfmt.c	/^snprintf(char *buf, int n, const char *fmt, ...)$/;"	f
+spin	boot/boot.S	/^spin:$/;"	l
+spin	kern/entry.S	/^spin:	jmp	spin$/;"	l
+sprintbuf	lib/printfmt.c	/^struct sprintbuf {$/;"	s	file:
+sprintputch	lib/printfmt.c	/^sprintputch(int ch, struct sprintbuf *b)$/;"	f	file:
+ssize_t	inc/types.h	/^typedef int32_t ssize_t;$/;"	t
+stab_binsearch	kern/kdebug.c	/^stab_binsearch(const struct Stab *stabs, int *region_left, int *region_right,$/;"	f	file:
+start	boot/boot.S	/^start:$/;"	l
+static_assert	inc/assert.h	18;"	d
+stop	gradelib.py	/^    def stop(line):$/;"	f	function:stop_on_line
+stop_breakpoint	gradelib.py	/^def stop_breakpoint(addr):$/;"	f
+stop_on_line	gradelib.py	/^def stop_on_line(regexp):$/;"	f
+str1	user/sendpage.c	/^const char *str1 = "hello child environment! how are you?";$/;"	v
+str2	user/sendpage.c	/^const char *str2 = "hello parent environment! I'm good.";$/;"	v
+strcat	lib/string.c	/^strcat(char *dst, const char *src)$/;"	f
+strchr	lib/string.c	/^strchr(const char *s, char c)$/;"	f
+strcmp	lib/string.c	/^strcmp(const char *p, const char *q)$/;"	f
+strcpy	lib/string.c	/^strcpy(char *dst, const char *src)$/;"	f
+strfind	lib/string.c	/^strfind(const char *s, char c)$/;"	f
+strlcpy	lib/string.c	/^strlcpy(char *dst, const char *src, size_t size)$/;"	f
+strlen	lib/string.c	/^strlen(const char *s)$/;"	f
+strncmp	lib/string.c	/^strncmp(const char *p, const char *q, size_t n)$/;"	f
+strncpy	lib/string.c	/^strncpy(char *dst, const char *src, size_t size) {$/;"	f
+strnlen	lib/string.c	/^strnlen(const char *s, size_t size)$/;"	f
+strtol	lib/string.c	/^strtol(const char *s, char **endptr, int base)$/;"	f
+test	gradelib.py	/^def test(points, title=None, parent=None):$/;"	f
+test_backtrace	kern/init.c	/^test_backtrace(int x)$/;"	f
+test_backtrace_arguments	grade-lab1	/^def test_backtrace_arguments():$/;"	f
+test_backtrace_count	grade-lab1	/^def test_backtrace_count():$/;"	f
+test_backtrace_lines	grade-lab1	/^def test_backtrace_lines():$/;"	f
+test_backtrace_symbols	grade-lab1	/^def test_backtrace_symbols():$/;"	f
+test_jos	grade-lab1	/^def test_jos():$/;"	f
+test_printf	grade-lab1	/^def test_printf():$/;"	f
+tlbflush	inc/x86.h	/^tlbflush(void)$/;"	f
+togglecode	kern/console.c	/^static uint8_t togglecode[256] =$/;"	v	file:
+true	inc/types.h	/^enum { false, true };$/;"	e	enum:__anon2
+ts_cr3	inc/mmu.h	/^	physaddr_t ts_cr3;	\/\/ Page directory base$/;"	m	struct:Taskstate
+ts_cs	inc/mmu.h	/^	uint16_t ts_cs;$/;"	m	struct:Taskstate
+ts_ds	inc/mmu.h	/^	uint16_t ts_ds;$/;"	m	struct:Taskstate
+ts_eax	inc/mmu.h	/^	uint32_t ts_eax;	\/\/ More saved state (registers)$/;"	m	struct:Taskstate
+ts_ebp	inc/mmu.h	/^	uintptr_t ts_ebp;$/;"	m	struct:Taskstate
+ts_ebx	inc/mmu.h	/^	uint32_t ts_ebx;$/;"	m	struct:Taskstate
+ts_ecx	inc/mmu.h	/^	uint32_t ts_ecx;$/;"	m	struct:Taskstate
+ts_edi	inc/mmu.h	/^	uint32_t ts_edi;$/;"	m	struct:Taskstate
+ts_edx	inc/mmu.h	/^	uint32_t ts_edx;$/;"	m	struct:Taskstate
+ts_eflags	inc/mmu.h	/^	uint32_t ts_eflags;$/;"	m	struct:Taskstate
+ts_eip	inc/mmu.h	/^	uintptr_t ts_eip;	\/\/ Saved state from last task switch$/;"	m	struct:Taskstate
+ts_es	inc/mmu.h	/^	uint16_t ts_es;		\/\/ Even more saved state (segment selectors)$/;"	m	struct:Taskstate
+ts_esi	inc/mmu.h	/^	uint32_t ts_esi;$/;"	m	struct:Taskstate
+ts_esp	inc/mmu.h	/^	uintptr_t ts_esp;$/;"	m	struct:Taskstate
+ts_esp0	inc/mmu.h	/^	uintptr_t ts_esp0;	\/\/ Stack pointers and segment selectors$/;"	m	struct:Taskstate
+ts_esp1	inc/mmu.h	/^	uintptr_t ts_esp1;$/;"	m	struct:Taskstate
+ts_esp2	inc/mmu.h	/^	uintptr_t ts_esp2;$/;"	m	struct:Taskstate
+ts_fs	inc/mmu.h	/^	uint16_t ts_fs;$/;"	m	struct:Taskstate
+ts_gs	inc/mmu.h	/^	uint16_t ts_gs;$/;"	m	struct:Taskstate
+ts_iomb	inc/mmu.h	/^	uint16_t ts_iomb;	\/\/ I\/O map base address$/;"	m	struct:Taskstate
+ts_ldt	inc/mmu.h	/^	uint16_t ts_ldt;$/;"	m	struct:Taskstate
+ts_link	inc/mmu.h	/^	uint32_t ts_link;	\/\/ Old ts selector$/;"	m	struct:Taskstate
+ts_padding1	inc/mmu.h	/^	uint16_t ts_padding1;$/;"	m	struct:Taskstate
+ts_padding10	inc/mmu.h	/^	uint16_t ts_padding10;$/;"	m	struct:Taskstate
+ts_padding2	inc/mmu.h	/^	uint16_t ts_padding2;$/;"	m	struct:Taskstate
+ts_padding3	inc/mmu.h	/^	uint16_t ts_padding3;$/;"	m	struct:Taskstate
+ts_padding4	inc/mmu.h	/^	uint16_t ts_padding4;$/;"	m	struct:Taskstate
+ts_padding5	inc/mmu.h	/^	uint16_t ts_padding5;$/;"	m	struct:Taskstate
+ts_padding6	inc/mmu.h	/^	uint16_t ts_padding6;$/;"	m	struct:Taskstate
+ts_padding7	inc/mmu.h	/^	uint16_t ts_padding7;$/;"	m	struct:Taskstate
+ts_padding8	inc/mmu.h	/^	uint16_t ts_padding8;$/;"	m	struct:Taskstate
+ts_padding9	inc/mmu.h	/^	uint16_t ts_padding9;$/;"	m	struct:Taskstate
+ts_ss	inc/mmu.h	/^	uint16_t ts_ss;$/;"	m	struct:Taskstate
+ts_ss0	inc/mmu.h	/^	uint16_t ts_ss0;	\/\/   after an increase in privilege level$/;"	m	struct:Taskstate
+ts_ss1	inc/mmu.h	/^	uint16_t ts_ss1;$/;"	m	struct:Taskstate
+ts_ss2	inc/mmu.h	/^	uint16_t ts_ss2;$/;"	m	struct:Taskstate
+ts_t	inc/mmu.h	/^	uint16_t ts_t;		\/\/ Trap on task switch$/;"	m	struct:Taskstate
+uint16_t	inc/types.h	/^typedef unsigned short uint16_t;$/;"	t
+uint32_t	inc/types.h	/^typedef unsigned int uint32_t;$/;"	t
+uint64_t	inc/types.h	/^typedef unsigned long long uint64_t;$/;"	t
+uint8_t	inc/types.h	/^typedef unsigned char uint8_t;$/;"	t
+uintptr_t	inc/types.h	/^typedef uint32_t uintptr_t;$/;"	t
+umain	user/sendpage.c	/^umain(int argc, char **argv)$/;"	f
+user_test	gradelib.py	/^    def user_test(self, binary, *monitors, **kw):$/;"	m	class:Runner
+va_arg	inc/stdarg.h	10;"	d
+va_end	inc/stdarg.h	12;"	d
+va_list	inc/stdarg.h	/^typedef __builtin_va_list va_list;$/;"	t
+va_start	inc/stdarg.h	8;"	d
+vcprintf	kern/printf.c	/^vcprintf(const char *fmt, va_list ap)$/;"	f
+vprintfmt	lib/printfmt.c	/^vprintfmt(void (*putch)(int, void*), void *putdat, const char *fmt, va_list ap)$/;"	f
+vsnprintf	lib/printfmt.c	/^vsnprintf(char *buf, int n, const char *fmt, va_list ap)$/;"	f
+wait	gradelib.py	/^    def wait(self):$/;"	f
+waitdisk	boot/main.c	/^waitdisk(void)$/;"	f
+warn	inc/assert.h	11;"	d
+wpos	kern/console.c	/^	uint32_t wpos;$/;"	m	struct:__anon1	file:
+write_eflags	inc/x86.h	/^write_eflags(uint32_t eflags)$/;"	f
+xchg	inc/x86.h	/^xchg(volatile uint32_t *addr, uint32_t newval)$/;"	f
