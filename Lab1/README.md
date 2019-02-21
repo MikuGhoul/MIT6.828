@@ -99,6 +99,27 @@
 ```
 * 这些指令大都是和体系结构相关的知识，不必深入了解，简单说一下流程就是设置寄存器，关中断，in/out 70/71控制cmos调整中断，加载IDTR中断向量表，加载GDTR全局描述符，开启保护模式，进入保护模式
 
-#### Materials & Tools
-* [Reading materials](https://pdos.csail.mit.edu/6.828/2018/reference.html)
-* [Tools Used in 6.828](https://pdos.csail.mit.edu/6.828/2018/tools.html)
+#### Part 2: The Boot Loader
+* 软盘和硬盘的512字节叫做一个扇区(sector)，是最小的传输粒度（每次独写都是一个或多个扇区，并在扇区边界对齐），可boot的磁盘的第一个扇区叫boot sector，存放boot loader的代码。
+* 当BIOS找到可以boot的sector时，会把这个boot sector加载到物理内存的 0x7c00 到 0x7dff，然后jmp到0x7c00，把控制权交给boot loader。（0x7c00这个地址也是PC固定的标准地址）
+* jos的boot loader由`boot/boot.S`和`boot/main.c`组成，执行两个功能
+    1. 把实模式切换到32位保护模式，因为只有在这个模式下，软件可以访问超过1MB物理地址空间。
+        * 保护模式的寻址和实模式不同，具体参见[PC Assembly Language](https://pdos.csail.mit.edu/6.828/2018/readings/pcasm-book.pdf)的1.2.7/1.28
+    2. 通过x86的特殊IO指令访问IDE磁盘设备寄存器，从硬盘读取内核
+
+> Exercise 3. Take a look at the lab tools guide, especially the section on GDB commands. Even if you're familiar with GDB, this includes some esoteric GDB commands that are useful for OS work.
+
+> Set a breakpoint at address 0x7c00, which is where the boot sector will be loaded. Continue execution until that breakpoint. Trace through the code in boot/boot.S, using the source code and the disassembly file obj/boot/boot.asm to keep track of where you are. Also use the x/i command in GDB to disassemble sequences of instructions in the boot loader, and compare the original boot loader source code with both the disassembly in obj/boot/boot.asm and GDB.
+
+> Trace into bootmain() in boot/main.c, and then into readsect(). Identify the exact assembly instructions that correspond to each of the statements in readsect(). Trace through the rest of readsect() and back out into bootmain(), and identify the begin and end of the for loop that reads the remaining sectors of the kernel from the disk. Find out what code will run when the loop is finished, set a breakpoint there, and continue to that breakpoint. Then step through the remainder of the boot loader.
+
+* Exercise 3
+    * 关于`boot/boot.S`文件，我在源文件里补充了一些注释
+
+> At what point does the processor start executing 32-bit code? What exactly causes the switch from 16- to 32-bit mode?
+
+> What is the last instruction of the boot loader executed, and what is the first instruction of the kernel it just loaded?
+
+> Where is the first instruction of the kernel?
+
+> How does the boot loader decide how many sectors it must read in order to fetch the entire kernel from disk? Where does it find this information?
