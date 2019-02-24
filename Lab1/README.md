@@ -11,7 +11,7 @@
     * 让去学汇编，可以看CSAPP来学AT&T汇编
 
 ##### Simulating the x86
-* 编译后`make qemu` 和 `make qemu-nox`都可以启动，`make qemu`是模拟串口但不带VGA的，用`ctrl+a x`退出
+* 编译后`make qemu` 和 `make qemu-nox`都可以启动，`make qemu-nox`是模拟串口但不带VGA的，用`ctrl+a x`退出
 
 ##### The PC's Physical Address Space
 * PC物理地址布局
@@ -114,12 +114,31 @@
 > Trace into bootmain() in boot/main.c, and then into readsect(). Identify the exact assembly instructions that correspond to each of the statements in readsect(). Trace through the rest of readsect() and back out into bootmain(), and identify the begin and end of the for loop that reads the remaining sectors of the kernel from the disk. Find out what code will run when the loop is finished, set a breakpoint there, and continue to that breakpoint. Then step through the remainder of the boot loader.
 
 * Exercise 3
-    * 关于`boot/boot.S`文件，我在源文件里补充了一些注释
+    * bootloader两个文件
+        1. boot.S的主要作用是切换到保护模式，并跳到C代码
+            * 关于[boot/boot.S](https://github.com/MikuGhoul/MIT6.828/blob/master/Lab1/boot/boot.S)文件，我在源文件里补充了一些注释
+        2. main.c的主要作用是从硬盘读内核的代码到内存，并跳到内核这个ELF文件的入口点
+            * 大致流程是先读几个sector，然后通过elf header的magic number判断是不是elf文件，若是就通过elf header里的program header信息读program header到内存。可以参看 [Executable and Linkable Format](https://en.wikipedia.org/wiki/Executable_and_Linkable_Format) wiki
+            * readsect向不同的端口打数据就是控制磁盘驱动的，别的函数看注释就可以了
 
 > At what point does the processor start executing 32-bit code? What exactly causes the switch from 16- to 32-bit mode?
 
+* `ljmp    $PROT_MODE_CSEG, $protcseg`这条指令开始运行32位代码，把CR0寄存器的PE位置1导致从16位实模式进入32位保护模式
+
 > What is the last instruction of the boot loader executed, and what is the first instruction of the kernel it just loaded?
+
+* `((void (*)(void)) (ELFHDR->e_entry))();`是boot loader的最后一句，通过gdb可以追到kernel的第一句是在0x10000c的`movw   $0x1234,0x472 `
 
 > Where is the first instruction of the kernel?
 
+* 在`0x10000c`，用gdb `b`到上面e_entry，看到是`call *0x10018`，`p *0x10018`结果就是`0x10000c`。或者直接用readelf/objdump看入口地址
+
 > How does the boot loader decide how many sectors it must read in order to fetch the entire kernel from disk? Where does it find this information?
+
+* 在jos里boot loader会先读8个sector，里面有elf header信息，从elf header里获取有多少个program header entry，多大size等信息，然后根据这个信息决定读多少
+
+#### Loading the Kernel
+* Exercise 4
+    * 略
+
+
