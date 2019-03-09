@@ -141,4 +141,64 @@
 * Exercise 4
     * 略
 
+* 理解`boot/main.c`，需要知道elf二进制文件。当编译并链接一个jos这样的C程序，编译器把C源码(.c)编译为目标文件(.o)，包括了硬件上可运行的二进制编码。然后链接器将所有的目标文件链接成一个二进制镜像文件`obj/kern/kernel`，这个二进制文件就是elf文件
+* elf文件由带有**加载信息的头部**和**几个程序段组成**
+    * 每个程序段由连续的**代码**和**数据**组成
+    * bootloader不修改elf代码，只加载后运行
+* elf header定义在`inc/elf.h`
+* 几个比较有用的program section
+    * .text: 程序运行指令
+    * .rodata: 只读数据
+    * .data: 初始化全局变量
+    * .bss: 未初始化全局变量
+        * .bss段本身不占用实际的elf文件的空间，由链接器(linker)记录.bss段的地址和大小，最终加载器（loader)或者本身运行的时候才会真正清零，占用空间
 
+* `objdump -x obj/kern/kernel`
+    * section header
+        * 注意.text section的VMA和LMA
+            * LMA(load address)：section被load进内存的地址
+            * VMA(link address)：section被执行的内存地址
+        * 通常情况下VMA和LMA是相同的
+    * program header
+        * 会被load的区域被标记为"LOAD"
+        * 以及其他的信息vaddr(virtual address), paddr(pyhsical address), memsz 和 filesz(加载区域大小)
+
+> Exercise 5. Trace through the first few instructions of the boot loader again and identify the first instruction that would "break" or otherwise do the wrong thing if you were to get the boot loader's link address wrong. Then change the link address in boot/Makefrag to something wrong, run make clean, recompile the lab with make, and trace into the boot loader again to see what happens. Don't forget to change the link address back and make clean again afterward!
+* Exercise 5
+    * 修改一下`boot/Makefrag`中的`-Ttext 0x7C00`，然后gdb重新跟一下bootloader，比如改成`0x8c00`
+* 由于此时的loader加载的是bootloader，还有没有操作系统存在，是由bios担任此时的loader，而bios默认规定的链接bootloader地址是`0x7c00`，所以即使用`objdump`看新编译好的bootloader，VMA/LMA地址显示的是`00008c00`，但用gdb跟代码后还是发现依旧被load到`0x7c00`。
+* 而在符号重定向的时候，根据elf header中的地址把编译器生成的一些地址进行替换的时候使用的是`0x8c00`，而不是`0x7c00`，所以就会出现
+``` x86asm
+ 17│    0x7c1e:      lgdtw  0x7c64
+ 18│    0x7c23:      mov    %cr0,%eax
+ 19│    0x7c26:      or     $0x1,%eax
+ 20│    0x7c2a:      mov    %eax,%cr0
+ 21│    0x7c2d:      ljmp   $0x8,$0x7c32
+```
+变成了
+``` x86asm
+ 17│    0x7c1e:      lgdtw  -0x739c
+ 18│    0x7c23:      mov    %cr0,%eax
+ 19│    0x7c26:      or     $0x1,%eax
+ 20│    0x7c2a:      mov    %eax,%cr0
+ 21│    0x7c2d:      ljmp   $0x8,$0x8c32
+```
+
+> Exercise 6. We can examine memory using GDB's x command. The GDB manual has full details, but for now, it is enough to know that the command x/Nx ADDR prints N words of memory at ADDR. (Note that both 'x's in the command are lowercase.) Warning: The size of a word is not a universal standard. In GNU assembly, a word is two bytes (the 'w' in xorw, which stands for word, means 2 bytes).
+
+> Reset the machine (exit QEMU/GDB and start them again). Examine the 8 words of memory at 0x00100000 at the point the BIOS enters the boot loader, and then again at the point the boot loader enters the kernel. Why are they different? What is there at the second breakpoint? (You do not really need to use QEMU to answer this question. Just think.)
+
+* Exercise 6
+    * 在bios进入bootloader的时候(0x7c00)用gdb查看`0x00100000`发现结果如下
+    ``` x86asm
+    (gdb) x/8x 0x00100000
+    0x100000:	0x00000000	0x00000000	0x00000000	0x00000000
+    0x100010:	0x00000000	0x00000000	0x00000000	0x00000000
+    ```
+    * 而在bootloader的最后一条指令(0x7d61)用gdb查看`0x00100000`发现结果如下
+    ```x86asm
+    (gdb) x/8x 0x00100000
+    0x100000:	0x1badb002	0x00000000	0xe4524ffe	0x7205c766
+    0x100010:	0x34000004	0x0000b812	0x220f0011	0xc0200fd8
+    ```
+    * 原因就是因为bootloader把kernel加载进来了
