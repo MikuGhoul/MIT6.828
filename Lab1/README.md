@@ -137,7 +137,7 @@
 
 * 在jos里boot loader会先读8个sector，里面有elf header信息，从elf header里获取有多少个program header entry，多大size等信息，然后根据这个信息决定读多少
 
-#### Loading the Kernel
+##### Loading the Kernel
 * Exercise 4
     * 略
 
@@ -202,3 +202,29 @@
     0x100010:	0x34000004	0x0000b812	0x220f0011	0xc0200fd8
     ```
     * 原因就是因为bootloader把kernel加载进来了
+
+#### Part 3: The Kernel
+* 向bootloader一样，kernel开始也是需要一些汇编代码设置点东西，这样C代码才能正确运行
+
+##### Using virtual memory to work around position dependence
+* bootloader的VMA(link address)和LMA(load address)是一样的
+* kernel的VMA和LMA有很大差距
+    * `kern/kernel.ld`中改变kernel的VMA为`0xF0100000`
+* 操作系统通常是link并run在非常高的虚拟地址，比如`0xF0100000`，是为了把低的虚拟地址空间留给用户态程序使用
+* 一些机器没有`0xf0100000`这么高的物理地址，所以不能指望把kernel存储在这，但可以用处理器的内存管理硬件硬件把`0xf0100000`(link address: kernel期望被运行的地址)映射到`0x00100000`(load address: bootloader把kernel实际load进物理内存的地址)
+* 现在，我们只映射物理内存的前4MB，足够了启动和运行。实现方法在`kern/entrypgdir.c`，用手写的静态初始化**页目录**(page directory)和**页表**(page table)
+* 在`kern/entry.S`中，设置cr0寄存器的pg位之前，内存引用的都是物理内存（严格的说是线性地址，只不过把线性地址和物理地址进行了映射），一旦pg位被设置，内存引用的就是虚拟地址了，通过虚拟内存硬件翻译为物理地址
+* `entry_pgdir`把虚拟地址`0xf0000000 ~ 0xf0400000` 翻译为物理地址`0x00000000 ~ 0x00400000`，同样，`0x00000000 ~ 0x00400000`被翻译为`0x00000000 ~ 0x00400000`。不在这两个范围内的虚拟地址会导致硬件异常
+
+> Exercise 7. Use QEMU and GDB to trace into the JOS kernel and stop at the movl %eax, %cr0. Examine memory at 0x00100000 and at 0xf0100000. Now, single step over that instruction using the stepi GDB command. Again, examine memory at 0x00100000 and at 0xf0100000. Make sure you understand what just happened.
+
+> What is the first instruction after the new mapping is established that would fail to work properly if the mapping weren't in place? Comment out the movl %eax, %cr0 in kern/entry.S, trace into it, and see if you were right.
+
+* Exercise 7
+    1. `movl %eax, %cr0`后开启了分页(引入虚拟地址)，**Map VA's [0, 4MB) to PA's [0, 4MB) ,Map VA's [KERNBASE, KERNBASE+4MB) to PA's [0, 4MB)**，所以分页后`0x00100000`和`0xf0100000`会映射到相同的物理地址(因为KERNBASE为0xf0000000)，用gdb的`x/4i`查看`0x00100000`和`0xf0100000`这两个不同的虚拟地址会发现是相同的指令，分页前却是不同的
+        * 参见`kern/entry.S`和`kern/entrypgdir.c`
+    2. 无论是否开启分页进行虚拟地址映射，都会用`jmp`指令跳转到临近的下条指令，比如从`0x10002d`跳转到`0xf010002f`
+        * 开启分页的话，`[KERNBASE, KERNBASE+4MB)`是已经映射到了物理地址的`[0,4MB)`，所以`0xf010002f`会被映射到`0x0010002f`，所以会正常运行    
+            * 因为前面声明了`_start = RELOC(entry)`，即强制把运行的起始地址从KERNBASE以上改到了与实际物理地址相同的虚拟地址，所以`jmp`前的代码实际上都是在`[0,4MB)`运行，所以没有出错
+        * 不开启分页的话(注释掉`movl %eax, %cr0`)，`[KERNBASE, KERNBASE+4MB)`这段虚拟地址没有进行映射，`x/8x addr`看一下就知道了里面全是`0x000000`，必然会出错
+    
