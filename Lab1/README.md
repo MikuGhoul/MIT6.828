@@ -228,3 +228,56 @@
             * 因为前面声明了`_start = RELOC(entry)`，即强制把运行的起始地址从KERNBASE以上改到了与实际物理地址相同的虚拟地址，所以`jmp`前的代码实际上都是在`[0,4MB)`运行，所以没有出错
         * 不开启分页的话(注释掉`movl %eax, %cr0`)，`[KERNBASE, KERNBASE+4MB)`这段虚拟地址没有进行映射，`x/8x addr`看一下就知道了里面全是`0x000000`，必然会出错
     
+##### Formatted Printing to the Console
+> Exercise 8. We have omitted a small fragment of code - the code necessary to print octal numbers using patterns of the form "%o". Find and fill in this code fragment.
+
+* Exercise 8
+    * 对比一下别的case直接写，没什么可说的
+    * 深入了解看[stdarg.h wiku](https://en.wikipedia.org/wiki/Stdarg.h) 和 [fprintf cppreference](https://en.cppreference.com/w/c/io/fprintf)
+
+1. Explain the interface between printf.c and console.c. Specifically, what function does console.c export? How is this function used by printf.c?
+    * `console.c`提供了`void cputchar(int c)`这个函数给`printf.c`，`printf.c`把这个函数作为输出一个字符的API
+2. Explain the following from console.c:
+    ``` c
+    1      if (crt_pos >= CRT_SIZE) {
+    2              int i;
+    3              memmove(crt_buf, crt_buf + CRT_COLS, (CRT_SIZE - CRT_COLS) * sizeof(uint16_t));
+    4              for (i = CRT_SIZE - CRT_COLS; i < CRT_SIZE; i++)
+    5                      crt_buf[i] = 0x0700 | ' ';
+    6              crt_pos -= CRT_COLS;
+    7      }
+    ```
+    * 作用就是当在把屏幕写满的时候，整体上滚一行，留出新的空行
+
+3. For the following questions you might wish to consult the notes for Lecture 2. These notes cover GCC's calling convention on the x86. Trace the execution of the following code step-by-step:
+    ``` c
+    int x = 1, y = 3, z = 4;
+    cprintf("x %d, y %x, z %d\n", x, y, z);
+    ```
+    1. In the call to cprintf(), to what does fmt point? To what does ap point?
+    2. List (in order of execution) each call to cons_putc, va_arg, and vcprintf. For cons_putc, list its argument as well. For va_arg, list what ap points to before and after the call. For vcprintf list the values of its two arguments.
+    * 理解就可以了，也可以放到代码中编译运行试一试
+
+4. Run the following code.
+    ``` c
+    unsigned int i = 0x00646c72;
+    cprintf("H%x Wo%s", 57616, &i);
+    ```
+    1. What is the output?
+        * 输出 `He110 World`
+    2. The output depends on that fact that the x86 is little-endian. If the x86 were instead big-endian what would you set i to in order to yield the same output? Would you need to change 57616 to a different value?
+        * 如果是big-endian，i应该为0x726c6400，57616不用变
+
+5. In the following code, what is going to be printed after 'y='? (note: the answer is not a specific value.) Why does this happen?
+    * `cprintf("x=%d y=%d", 3);`
+        * 这是个ub，因为最终调用va_arg的时候，ap这个va_list里面已经没有多余的未解析参数了，参考[va_arg](https://en.cppreference.com/w/cpp/utility/variadic/va_arg)里的
+        > If va_arg is called when there are no more arguments in ap, the behavior is undefined.
+
+6. Let's say that GCC changed its calling convention so that it pushed arguments on the stack in declaration order, so that the last argument is pushed last. How would you have to change cprintf or its interface so that it would still be possible to pass it a variable number of arguments?
+    * 把`int cprintf(const char *fmt, ...)`改为`int	cprintf(..., const char *fmt)`
+    * 看看[C语言函数参数压栈顺序为何是从右到左？](https://blog.csdn.net/jiange_zh/article/details/47381597)就懂了
+
+* Challenge
+    * 先略过哈
+
+    
