@@ -280,4 +280,25 @@
 * Challenge
     * 先略过哈
 
-    
+##### The Stack
+> Exercise 9. Determine where the kernel initializes its stack, and exactly where in memory its stack is located. How does the kernel reserve space for its stack? And at which "end" of this reserved area is the stack pointer initialized to point to?
+* Exercise 9
+    * 在`kern/entry.S`中的`movl $0x0, %ebp`和`movl $(bootstacktop), %esp`设置栈指针，初始化栈
+    * 用objdump反汇编kernel文件，可以看到bootstacktop的地址在0xf0110000，属于.date段
+    * 在`kern/entry.S`中，用`.space KSTKSIZE`声明了栈的大小，为8个page大小，即 8*4096 byte
+    * esp初始化时指向的是低地址的栈顶
+
+* esp**栈指针寄存器**，指向当前栈的低地址，更低地址的栈空间是空闲的，push是减小esp值，并把值写入esp所指的地址。pop是从esp所指地址读数据，并增加esp值
+* ebp**栈基址寄存器**，是栈预先约定的规则。进入C函数中，通常先要通过push到栈中保存上一个函数的ebp，并把esp赋值给ebp。
+    * 参考[栈帧%ebp,%esp详解](https://blog.csdn.net/wojiuguowei/article/details/78958794)
+    * 有这样的约定规则十分有用，比如在assert失败或者panic时，可以通过栈的调用链保存的ebp寄存器回溯来决定嵌套调用序列
+
+> Exercise 10. To become familiar with the C calling conventions on the x86, find the address of the test_backtrace function in obj/kern/kernel.asm, set a breakpoint there, and examine what happens each time it gets called after the kernel starts. How many 32-bit words does each recursive nesting level of test_backtrace push on the stack, and what are those words?
+* Exercise 10
+    * 略
+
+> Exercise 11. Implement the backtrace function as specified above. Use the same format as in the example, since otherwise the grading script will be confused. When you think you have it working right, run make grade to see if its output conforms to what our grading script expects, and fix it if it doesn't. After you have handed in your Lab 1 code, you are welcome to change the output format of the backtrace function any way you like.
+* Exerciese 11
+    * 实现`mon_backtrace`，知道函数调用时候堆栈发生了什么就很好写了，参考反汇编
+        * 函数首先把参数入栈（对应反汇编的push），然后把函数返回后接下来运行的语句地址入栈（汇编通过call语句实现，call可以分解为push和jmp），然后进入被调用函数，把调用函数的栈基质入栈（对应反汇编的push %ebp）
+    * 知道了入栈顺序后，就可以通过ebp计算出其余值
