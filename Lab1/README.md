@@ -302,3 +302,9 @@
     * 实现`mon_backtrace`，知道函数调用时候堆栈发生了什么就很好写了，参考反汇编
         * 函数首先把参数入栈（对应反汇编的push），然后把函数返回后接下来运行的语句地址入栈（汇编通过call语句实现，call可以分解为push和jmp），然后进入被调用函数，把调用函数的栈基质入栈（对应反汇编的push %ebp）
     * 知道了入栈顺序后，就可以通过ebp计算出其余值
+
+> Exercise 12.Exercise 12. Modify your stack backtrace function to display, for each eip, the function name, source file name, and line number corresponding to that eip.
+
+* Exercise 12
+    * 这里通过修改`kernel.ld`，添加`.stab`section，为后面获取debug信息准备，即相当于在编译后的elf文件中添加了所需的debug信息。调用debuginfo_eip通过eip存储的地址来获取信息，包括当前指令所在文件、函数、行数等
+    * 修改的文件有`kern/kdebug.c`和`kern/monitor.c`
