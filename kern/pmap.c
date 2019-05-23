@@ -102,8 +102,15 @@ boot_alloc(uint32_t n)
 	// to a multiple of PGSIZE.
 	//
 	// LAB 2: Your code here.
+	if (n == 0)
+		return nextfree;
+	result = nextfree;
+	nextfree = ROUNDUP(nextfree + n, PGSIZE);
+	if ((uint32_t)nextfree > KERNBASE + npages * PGSIZE) {
+		panic("boot_alloc: out of memory!");
+	}
 
-	return NULL;
+	return result;
 }
 
 // Set up a two-level page table:
@@ -148,6 +155,10 @@ mem_init(void)
 	// array.  'npages' is the number of physical pages in memory.  Use memset
 	// to initialize all fields of each struct PageInfo to 0.
 	// Your code goes here:
+	size_t PageInfoSize = sizeof(struct PageInfo);
+	pages = (struct PageInfo *)boot_alloc(npages * PageInfoSize);
+	memset(pages, 0, npages * PageInfoSize);
+	
 
 
 	//////////////////////////////////////////////////////////////////////
@@ -252,11 +263,18 @@ page_init(void)
 	// NB: DO NOT actually touch the physical memory corresponding to
 	// free pages!
 	size_t i;
-	for (i = 0; i < npages; i++) {
+	for (i = 1; i < npages_basemem; i++) {
 		pages[i].pp_ref = 0;
 		pages[i].pp_link = page_free_list;
 		page_free_list = &pages[i];
 	}
+	i = PADDR(boot_alloc(0)) / PGSIZE;
+	for (; i < npages; i++) {
+		pages[i].pp_ref = 0;
+		pages[i].pp_link = page_free_list;
+		page_free_list = &pages[i];
+	}
+
 }
 
 //
@@ -275,7 +293,16 @@ struct PageInfo *
 page_alloc(int alloc_flags)
 {
 	// Fill this function in
-	return 0;
+	if (!page_free_list)
+		return NULL;
+	struct PageInfo *ret = page_free_list;
+	page_free_list = page_free_list->pp_link;
+	ret->pp_link = NULL;
+
+	if (alloc_flags & ALLOC_ZERO)
+		memset(page2kva(ret), 0, PGSIZE);
+	
+	return ret;
 }
 
 //
@@ -288,6 +315,13 @@ page_free(struct PageInfo *pp)
 	// Fill this function in
 	// Hint: You may want to panic if pp->pp_ref is nonzero or
 	// pp->pp_link is not NULL.
+	if (pp->pp_ref != 0)
+		panic("page_free: can't free this using page!");
+	if (pp->pp_link != NULL)
+		panic("page_free: error: multiple free!");
+	pp->pp_link = page_free_list;
+	page_free_list = pp;
+
 }
 
 //
