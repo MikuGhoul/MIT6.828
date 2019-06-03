@@ -71,3 +71,25 @@ physaddr_t  	Physical
 * 注意，page_alloc返回的物理页引用计数都是0
 
 ##### Page Table Management
+* Exercise 4
+    * 实现`pgdir_walk(),boot_map_region(),page_lookup(),page_remove(),page_insert()`
+    * pgdir_walk
+        * 通过页目录指针和线性地址（虚拟地址）计算出对应的页表项地址
+        * 二级页表（Page Directory & Page Table）分页模式
+        * 注意分页模式里的PDE和PTE都是**物理地址**
+    * boot_map_region
+        * 把虚拟地址[va, va + size]映射到物理地址[pa, pa + size]
+        * 所以可以利用pgdir_walk，通过va获取到对应的pte，把pa赋值给pte，就可以把va与pa关联起来了
+    * page_lookup
+        * 获取指定va对应的page
+        * 因为正好pte里存储的是物理地址，所以可以先通过pgdir_walk获取va对应的pte，获取这个pte中的存储物理地址的部分，然后把这个物理地址通过pa2page获取对应的page
+        * 还有第三个参数，就是获取pte
+    * page_remove
+        * umap与这个va对应的pa
+        * 先通过page_lookup获取va对应的page，因为page表示的是物理页，如不page不存在了，那么也就不用umap了
+        * page存在的话，先调用page_decref减少引用计数（减小到0时通过page_free释放给page_free_list），然后把通过page_lookup获取的pte赋值赋值为0，算是把va与pa进行umap，最后进行tlb的刷新
+    * page_insert
+        * map物理页pp对应的虚拟地址va
+        * 通过pgdir_walk获取va对应的pte，如果这个pte目前已映射，那么用page_remove来umap与这个va对应的pa
+        * 把物理页的引用计数增加，然后使用page2pa获取物理页对应的物理地址，把物理地址和权限赋值给pte，就map成功了
+	

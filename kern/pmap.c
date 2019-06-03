@@ -361,8 +361,22 @@ pte_t *
 pgdir_walk(pde_t *pgdir, const void *va, int create)
 {
 	// Fill this function in
+	// The address in PDE and PTE are both physical addresses
+	pde_t *pte = pgdir + PDX(va);
+	if (*pte & PTE_P) {
+		return (pte_t *)KADDR(PTE_ADDR(*pte)) + PTX(va);
+	} 
+	if (create) {
+		struct PageInfo *pp = page_alloc(ALLOC_ZERO);
+		if (pp == NULL)
+			return NULL;
+		pp->pp_ref++;
+		*pte = PADDR(page2kva(pp)) | PTE_U | PTE_W | PTE_P;
+		return (pte_t *)KADDR(PTE_ADDR(*pte)) + PTX(va);
+	}
 	return NULL;
 }
+
 
 //
 // Map [va, va+size) of virtual address space to physical [pa, pa+size)
@@ -379,6 +393,11 @@ static void
 boot_map_region(pde_t *pgdir, uintptr_t va, size_t size, physaddr_t pa, int perm)
 {
 	// Fill this function in
+	pte_t * pte;
+	for (size_t i = 0; i < size; i += PGSIZE, pa += PGSIZE, va += PGSIZE) {
+		pte = pgdir_walk(pgdir, (void *)va, 1);
+		*pte = pa | perm | PTE_P;
+	}
 }
 
 //
@@ -410,6 +429,13 @@ int
 page_insert(pde_t *pgdir, struct PageInfo *pp, void *va, int perm)
 {
 	// Fill this function in
+	pte_t *pte = pgdir_walk(pgdir, va, 1);
+	if (pte == NULL)
+		return -E_NO_MEM;
+	pp->pp_ref++;
+	if (*pte & PTE_P)
+		page_remove(pgdir, va);
+	*pte = page2pa(pp) | perm | PTE_P;
 	return 0;
 }
 
@@ -428,8 +454,14 @@ struct PageInfo *
 page_lookup(pde_t *pgdir, void *va, pte_t **pte_store)
 {
 	// Fill this function in
-	return NULL;
+	pte_t *pte = pgdir_walk(pgdir, va, 0);
+	if (pte == NULL)
+		return NULL;
+	if (pte_store != 0)
+		*pte_store = pte;
+	return pa2page(PTE_ADDR(*pte));
 }
+
 
 //
 // Unmaps the physical page at virtual address 'va'.
@@ -450,7 +482,15 @@ void
 page_remove(pde_t *pgdir, void *va)
 {
 	// Fill this function in
+	pte_t *pte;
+	struct PageInfo *page = page_lookup(pgdir, va, &pte);
+	if (page) {
+		page_decref(page);
+		*pte = 0;
+		tlb_invalidate(pgdir, va);
+	}
 }
+
 
 //
 // Invalidate a TLB entry, but only if the page tables being
