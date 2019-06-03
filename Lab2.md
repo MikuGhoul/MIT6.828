@@ -93,3 +93,17 @@ physaddr_t  	Physical
         * 通过pgdir_walk获取va对应的pte，如果这个pte目前已映射，那么用page_remove来umap与这个va对应的pa
         * 把物理页的引用计数增加，然后使用page2pa获取物理页对应的物理地址，把物理地址和权限赋值给pte，就map成功了
 	
+#### Part 3: Kernel Address Space
+* jos的32位线性地址被分为两部分，低地址的用户环境和高地址的内核，分界线是`inc/memlayout.h`中的变量`ULIM`，保留了大约256MB的虚拟地址空间给内核
+
+##### Permissions and Fault Isolation
+* 内核和用户内存都存在各自的地址空间中，我们使用用户权限位来允许用户代码只有用户地址空间的权限，否则用户代码中的bug可能重写内核中的数据导致crash或者其他故障，甚至窃取其他环境的私有数据，注意用户和内核代码都受PTE_W位影响
+* 用户空间没有`ULIM`之上内存的任何权限，然而这个内核可以读写这块内存，从`[UTOP, ULIM)`，内核和用户空间有相同的权限：可读不可写。这个范围是用来暴露特定内核数据结构给用户空间的，`UTOP`之下的内存是提供给用户空间的
+
+##### Initializing the Kernel Address Space
+* 现在我们设置`UTOP`之上的地址：内核地址空间
+* `inc/memlayout.h`展示了应该使用的布局
+* 使用刚写好的函数来设置适当的线性地址到物理地址的映射
+
+* Exercise 5
+    * 完成mem_init剩余的部分
