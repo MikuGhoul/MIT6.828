@@ -138,6 +138,9 @@
 // The location of the user-level STABS data structure
 #define USTABDATA	(PTSIZE / 2)
 
+// Physical address of startup code for non-boot CPUs (APs)
+#define MPENTRY_PADDR	0x7000
+
 #ifndef __ASSEMBLER__
 
 typedef uint32_t pte_t;
@@ -173,15 +176,15 @@ extern volatile pde_t uvpd[];     // VA of current page directory
  * with page2pa() in kern/pmap.h.
  */
 struct PageInfo {
-       // Next page on the free list.
-       struct PageInfo *pp_link;
+	// Next page on the free list.
+	struct PageInfo *pp_link;
 
-       // pp_ref is the count of pointers (usually in page table entries)
-       // to this page, for pages allocated using page_alloc.
-       // Pages allocated at boot time using pmap.c's
-       // boot_alloc do not have valid reference count fields.
+	// pp_ref is the count of pointers (usually in page table entries)
+	// to this page, for pages allocated using page_alloc.
+	// Pages allocated at boot time using pmap.c's
+	// boot_alloc do not have valid reference count fields.
 
-       uint16_t pp_ref;
+	uint16_t pp_ref;
 };
 
 #endif /* !__ASSEMBLER__ */
